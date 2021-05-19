@@ -17,6 +17,7 @@ Data import
 ```{r}
 data <- read_xlsx('stats.xlsx')
 ```
+
 lubridate test
 ```{r echo=FALSE, eval=FALSE}
 test <- "00:27:28"
@@ -25,12 +26,21 @@ test2 <- period_to_seconds(hms(test))
 x <- "27:28"
 y <- paste("00:", x, sep = "")
 z <- period_to_seconds(hms(y))
+typeof(z)
 ```
 
-
 PCA
+
+extract only numerical data
 ```{r}
+minToSec <- function(x) {
+  toHms <- paste("00:",x,sep="")
+  result <- period_to_seconds(hms(toHms))
+  return(result)
+}
 # Convert min:sec to hour:min:sec to seconds
+
+
 
 ```
 
