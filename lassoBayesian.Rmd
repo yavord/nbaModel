@@ -1,0 +1,37 @@
+---
+title: "lassoBayesian"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(readxl)
+library(glmnet)
+library(magrittr)
+library(dplyr)
+library(lubridate)
+library(purrr)
+```
+
+Data import
+```{r}
+data <- read_xlsx('stats.xlsx')
+```
+lubridate test
+```{r echo=FALSE, eval=FALSE}
+test <- "00:27:28"
+test2 <- period_to_seconds(hms(test))
+
+x <- "27:28"
+y <- paste("00:", x, sep = "")
+z <- period_to_seconds(hms(y))
+```
+
+
+PCA
+```{r}
+# Convert min:sec to hour:min:sec to seconds
+
+```
+
+

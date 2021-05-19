@@ -1,0 +1,6 @@
+*.log
+*.xlsx
+*.Rproj.user
+*.Rproj
+*.Rhistory
+.Rproj.user
