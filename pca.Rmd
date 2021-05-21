@@ -55,6 +55,8 @@ abline(h = 1, col="red", lty=5)
 legend("topright", legend=c("Eigenvalue = 1"),
        col=c("red"), lty=5, cex=0.6)
 
+plot(dn_pca$x[,1],dn_pca$x[,2], main = "PC1 / PC2 - plot")
+
 ```
 
 
