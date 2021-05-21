@@ -49,7 +49,7 @@ data_numeric <- mutate_all(data_numeric, function(x) as.numeric(as.character(x))
 # PCA
 dn_pca <- prcomp(data_numeric, center = TRUE, scale = TRUE)
 
-# Graph results
+# Plot results
 screeplot(dn_pca, type = "l", npcs = 15, main = "Screeplot of the first 10 PCs")
 abline(h = 1, col="red", lty=5)
 legend("topright", legend=c("Eigenvalue = 1"),
