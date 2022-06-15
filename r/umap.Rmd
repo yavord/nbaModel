@@ -1,0 +1,23 @@
+---
+title: "umap"
+output: html_document
+date: '2022-06-15'
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(umap)
+```
+
+```{r}
+df <- read_csv('../data/stats_numeric_R.csv')
+```
+
+```{r}
+df.umap = umap(df)
+df.umap
+df.pts = df[,"PTS"]
+
+plot(df.umap)
+```
+

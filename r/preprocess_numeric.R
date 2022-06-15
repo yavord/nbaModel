@@ -1,35 +1,19 @@
----
-title: "hist"
-output: html_document
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(readxl)
 library(lubridate)
-library(umap)
-```
 
-```{r}
 df <- read_excel('../data/stats.xlsx')
-```
 
-```{r}
 # convert 'MIN' to seconds
 minToSec <- function(x) {
   toHms <- paste("00:",x,sep="")
   return(period_to_seconds(hms(toHms)))
 }
-
 df[3] <- df[3] %>% map(minToSec)
-```
 
-```{r}
+# select numeric vars and write to csv
 df_numeric <- df[, c(3:22)]
 df_numeric <- mutate_all(df_numeric, 
                          function(x) as.numeric(as.character(x)))
 
-write_csv(df_numeric, "test.csv")
-```
-
+write_csv(df_numeric, "../data/stats_numeric_R.csv")
