@@ -1,8 +1,18 @@
+### Data
 *.log
 *.xlsx
+*.csv
+*.html
+
+### R
+*.RData
 *.Rproj.user
 *.Rproj
 *.Rhistory
 .Rproj.user
-*.csv
-*.html
+
+### python
+__pycache__
+
+### general
+.vscode
