@@ -5,6 +5,4 @@ See:
 
 https://github.com/yavord/DailyGameLogs
 
-https://github.com/Mattmack1/DailyGameLogs
-
 for data
