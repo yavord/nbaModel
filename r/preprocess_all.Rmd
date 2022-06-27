@@ -1,0 +1,16 @@
+---
+title: "preprocess_all"
+output: html_document
+date: '2022-06-22'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(readxl)
+```
+
+```{r}
+df <- read_excel('../data/stats.xlsx')
+```
+
