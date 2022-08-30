@@ -7,10 +7,12 @@ date: '2022-06-15'
 ```{r setup, include=FALSE}
 library(tidyverse)
 library(umap)
+library(readxl)
 ```
 
 ```{r}
 df <- read_csv('../data/stats_numeric_R.csv')
+df.all <- read_excel('../data/stats.xlsx')
 ```
 
 ```{r}
