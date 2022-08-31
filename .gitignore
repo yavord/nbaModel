@@ -3,6 +3,7 @@
 *.xlsx
 *.csv
 *.html
+page_cache/*
 
 ### R
 *.RData
