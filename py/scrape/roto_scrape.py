@@ -1,13 +1,16 @@
 from time import sleep
 from random import randint
 from bs4 import BeautifulSoup
+from tqdm import tqdm
 import pandas as pd
 import requests
 import os
 import io
 
+
 encoding = 'ISO-8859-1'
-def soup(url):
+
+def get_soup(url):
     BASE_DIR="page_cache/"
     if not os.path.exists(BASE_DIR):
         os.makedirs(BASE_DIR)
@@ -28,12 +31,35 @@ def soup(url):
         print(RuntimeError)
 
 
-all_games=pd.DataFrame()
-URL = 'http://rotoguru1.com/cgi-bin/hyday.pl?game=dk&mon=10&day=27&year=2015'
-URL2 = 'http://rotoguru1.com/cgi-bin/fyday.pl?game=fd&scsv=1&week=1&year=2011'
-URL3 = 'http://rotoguru1.com/cgi-bin/hyday.pl?game=dk&scsv=1&mon=10&day=27&year=2015'
-x=soup(URL3)
-print(x.find('pre'))
+def get_all_games():
+    BASE_URL = 'http://rotoguru1.com/cgi-bin/hyday.pl?game=dk&scsv=1&mon=MONTH&day=DAY&year=YEAR'
+    MONTHS = list(map(str,range(1,13)))
+    DAYS = list(map(str,range(1,32)))
+    YEARS = list(map(str,range(2016,2017)))
+
+    all_games = []
+    for mon in tqdm(MONTHS):
+        for day in DAYS:
+            for yr in YEARS:
+                soup: BeautifulSoup = get_soup(BASE_URL.replace('MONTH',mon).replace('DAY',day).replace('YEAR',yr))
+                df = pd.read_csv(io.StringIO(soup.find("pre").text),sep=";")
+                print(df.iloc[-1:])
+                df = df.iloc[:-1]
+                all_games.append(df)
+    
+    all_games_df = pd.concat(all_games)
+    print(all_games_df)
+
+
+# all_games=pd.DataFrame()
+# URL = 'http://rotoguru1.com/cgi-bin/hyday.pl?game=dk&mon=10&day=27&year=2015'
+# URL2 = 'http://rotoguru1.com/cgi-bin/fyday.pl?game=fd&scsv=1&week=1&year=2011'
+# URL3 = 'http://rotoguru1.com/cgi-bin/hyday.pl?game=dk&scsv=1&mon=10&day=27&year=2015'
+# x=get_soup(URL3)
+# print(x.find('pre'))
 # print(x.prettify())
+# df = pd.read_csv(io.StringIO(x.find("pre").text),sep=";")
+# print(df)
 # all_games=pd.concat([all_games,pd.read_csv(io.StringIO(x.find("pre").text),sep=";")])
-# print(all_games)
+# all_games = all_games.iloc[:-1]
+# print(all_games.columns)
