@@ -9,13 +9,14 @@ import io
 
 
 ### Scrape rotoguru1.com for draftkings, or fanduel, player salaries and save to csv
+### Historical data for testing
 
 encoding = 'ISO-8859-1'
 
 
 def get_soup(
     url: str,
-):
+) -> BeautifulSoup:
     BASE_DIR="page_cache/"
     if not os.path.exists(BASE_DIR):
         os.makedirs(BASE_DIR)
@@ -34,11 +35,11 @@ def get_soup(
         print(RuntimeError)
 
 
-def get_all_games():
+def get_all_games() -> pd.DataFrame:
     BASE_URL = 'http://rotoguru1.com/cgi-bin/hyday.pl?game=dk&scsv=1&mon=MONTH&day=DAY&year=YEAR'
     MONTHS = list(map(str,range(1,13)))
     DAYS = list(map(str,range(1,32)))
-    YEARS = list(map(str,range(2016,2017)))
+    YEARS = list(map(str,range(2015,2017)))
 
     all_games = []
     for mon in tqdm(MONTHS):
@@ -50,9 +51,23 @@ def get_all_games():
                 df = df.loc[:,['Date','Name','DK Salary']]
                 all_games.append(df)
     
-    all_games_df = pd.concat(all_games)
-    all_games_df.to_csv('salaries.csv')
+    return pd.concat(all_games)
+
+
+def sal_preprocess(
+    df: pd.DataFrame
+):
+    df = df[~df.Date.str.contains('file transm')]
+    df = df[~df.Date.str.contains('For the')]
+    df = df.iloc[:,1:4]
+    df['Date'] = pd.to_datetime(df['Date'])
+    df = df.set_index('Date')
+    df['DK Salary'] = df['DK Salary'].str.replace(r'\D','')
+    df = df.loc[(df.index > '10-27-2015') & (df.index < '06-19-2016')]
+    df = df.dropna(how='any')
+    df.to_csv('dk_sal.csv')
 
 
 if __name__ == "__main__":
-    get_all_games()
+    df: pd.DataFrame = get_all_games()
+    sal_preprocess(df)
