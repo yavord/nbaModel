@@ -8,9 +8,14 @@ import os
 import io
 
 
+### Scrape rotoguru1.com for draftkings, or fanduel, player salaries and save to csv
+
 encoding = 'ISO-8859-1'
 
-def get_soup(url):
+
+def get_soup(
+    url: str,
+):
     BASE_DIR="page_cache/"
     if not os.path.exists(BASE_DIR):
         os.makedirs(BASE_DIR)
@@ -47,3 +52,7 @@ def get_all_games():
     
     all_games_df = pd.concat(all_games)
     all_games_df.to_csv('salaries.csv')
+
+
+if __name__ == "__main__":
+    get_all_games()
