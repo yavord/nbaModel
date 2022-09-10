@@ -59,7 +59,7 @@ def sal_preprocess(
 ):
     df = df[~df.Date.str.contains('file transm')]
     df = df[~df.Date.str.contains('For the')]
-    df = df.iloc[:,1:4]
+    df = df.iloc[:,:4]
     df['Date'] = pd.to_datetime(df['Date'])
     df = df.set_index('Date')
     df['DK Salary'] = df['DK Salary'].str.replace(r'\D','')
