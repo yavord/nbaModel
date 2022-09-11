@@ -108,14 +108,14 @@ for links in correctLinks:
 statsDF = statsDF.dropna()
 
 
-statsDF.tail()
+# statsDF.tail()
 
 
 # this updates the previous stats file. If you don't already have a stats file, this isn't necessary.
 # obviously has to be changed to your local repository.
 # df = pd.read_excel(r"/home/yavor/projects/PythonProjects/nba/DailyGameLogs/stats.xlsx")
 
-statsDF
+# statsDF
 
 
 
@@ -135,5 +135,5 @@ statsDF
 
 
 # obviously change this to your local repository
-print('writing excel')
-pd.DataFrame.to_excel(statsDF, f"stats.xlsx")
+print('writing csv')
+pd.DataFrame.to_csv(statsDF, f"stats.csv")
