@@ -24,11 +24,12 @@ def preprocess_full(
     df['MIN'] = df['MIN'].apply(__min_to_seconds)
     df['PLAYER'] = df['PLAYER'].apply(__player_name_fix)
     df[['HOME','AWAY']] = df['MATCHUP'].str.split(' vs ', 1, expand=True)  # split matchup into home/away cols
+    df = df.drop(['MATCHUP'], axis=1)
 
     return df
 
 
-x = preprocess_full(pd.read_csv('stats.csv'))
+x = preprocess_full(pd.read_csv('stats.csv')).to_csv('pp_test.csv')
 # x = 'Deni AvdijaD. Avdija'
 # __name_fix(x)
 
