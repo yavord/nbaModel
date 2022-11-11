@@ -7,6 +7,8 @@ TeamStats <- function(team){
   url2 <- paste('http://www.basketball-reference.com/teams/',team,'/2016/gamelog-advanced/')
   url2 <- gsub(" ","",url2,fixed=TRUE)
   
+  print(url)
+  
   url <- rawToChar(GET(url)$content)
   url2 <- rawToChar(GET(url2)$content)
   

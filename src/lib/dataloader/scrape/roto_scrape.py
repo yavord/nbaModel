@@ -17,7 +17,7 @@ encoding = 'ISO-8859-1'
 def get_soup(
     url: str,
 ) -> BeautifulSoup:
-    BASE_DIR="page_cache/"
+    BASE_DIR="src/data/page_cache/"
     if not os.path.exists(BASE_DIR):
         os.makedirs(BASE_DIR)
     url_hash=url.replace("/","").replace(":","").replace("?","").replace(".","")

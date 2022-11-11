@@ -1,5 +1,5 @@
-setwd('r/dataloader/')
-source('south_scrape_funct.R')
+# setwd('src/lib/dataloader/')
+source('scrape/south_scrape_funct.R')
 
 ### TEAMSTATS
 ATL <- TeamStats('ATL')

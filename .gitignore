@@ -3,6 +3,7 @@
 *.xlsx
 *.csv
 *.html
+http*
 # data/page_cache/*
 
 ### R
