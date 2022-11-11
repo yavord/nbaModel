@@ -27,11 +27,3 @@ def preprocess_full(
     df = df.drop(['MATCHUP'], axis=1)
 
     return df
-
-
-x = preprocess_full(pd.read_csv('stats.csv')).to_csv('pp_test.csv')
-# x = 'Deni AvdijaD. Avdija'
-# __name_fix(x)
-
-# x = 'Washington Wizards vs Charlotte Hornets'
-# __matchup_split(x)
