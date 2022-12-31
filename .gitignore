@@ -3,6 +3,8 @@
 *.xlsx
 *.csv
 *.html
+*.rds
+*.txt
 http*
 # data/page_cache/*
 

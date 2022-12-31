@@ -16,7 +16,9 @@
 
 
 library(plyr)
-library(arm);library(rbugs); library(R2WinBUGS)
+library(arm)
+library(rbugs)
+library(R2OpenBUGS)
 
 ##To duplicate, you will need to specify your working directory and the path
 ##of all the files below
@@ -37,7 +39,7 @@ library(arm);library(rbugs); library(R2WinBUGS)
 
 ##daily.pred.data: list of ready-to-predict data frames (the code to create it is given below)
 
-setwd(##Fill in here##)
+# setwd(##Fill in here##)
 
 Teams.All <- read.csv('##Fill in here##/final 1516 player2.csv')
 Defenses.All <- read.csv('##Fill in here##/final 1516 defense.csv')
