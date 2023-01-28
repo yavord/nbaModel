@@ -3,7 +3,7 @@ library(class)
 
 data_dir <- '/home/yavor/projects/multi_projects/nba/nbaModel/src/data/'
 
-lineups.all <- readRDS(paste0(data_dir,'lineup_block.rds'))  #TODO: import RDS or parquet that holds model outputs
+lineups.all <- readRDS(paste0(data_dir,'lineup_block.rds'))
 lineups.final <- rbind.fill(lineups.all)
 lineups.final$AboveCut <- ifelse(lineups.final$Actual>=260, 1, 0)
 lineups.dates <- unique(lineups.final$Date)
