@@ -1,29 +1,6 @@
 library(plyr)
 library(arm)
 library(R2OpenBUGS)
-# library(rbugs)
-
-### Load df
-data_dir <- '/home/yavor/projects/multi_projects/nba/nbaModel/src/data/south_data/'
-
-daily.pred.data <- readRDS(paste0(data_dir,'daily_pred_data_final.rds'))
-
-Teams.All <- read.csv(paste0(data_dir,'final_1516 player2.csv'))
-Defenses.All <- read.csv(paste0(data_dir,'final_1516_defense.csv'))
-All.Player.Previous <- read.csv(paste0(data_dir,'All_Player_Previous2.csv'))
-Salaries.All <- read.csv(paste0(data_dir,'salary_final.csv'))
-Matchup.History <- read.csv(paste0(data_dir,'lines_ou.csv'))
-
-Team.Names <- unique(Teams.All$Tm)
-Teams.All$Date <- as.Date(Teams.All$Date, "%m/%d/%Y")
-Defenses.All$Date <- as.Date(Defenses.All$Date, "%m/%d/%Y")
-All.Player.Previous$Date <- as.Date(All.Player.Previous$Date, "%m/%d/%Y")
-Salaries.All$Date <- as.Date(Salaries.All$Date, "%m/%d/%Y")
-Matchup.History$Date <- as.Date(Matchup.History$Date,"%m/%d/%Y")
-
-First.Date <- as.Date("11/16/2015","%m/%d/%Y")  #TODO: fix
-All.Dates <- unique(Teams.All$Date)
-All.Dates <- sort(All.Dates[All.Dates>=First.Date])
 
 
 ### get daily predictions from daily.pred.data lists
@@ -453,7 +430,7 @@ full.1day.stuff <- function(day=1, cut1.value=50000, cut2.value=50000)
   }
   opp.results.2015 <- opp.median.over.time(day.index=day)
   opp.clust.2015.new <- rbind.fill(opp.results.2015)
-  opp.clust.2015.new <- subset(opp.clust.2015.new, Date>'2015-11-10')
+  opp.clust.2015.new <- subset(opp.clust.2015.new, Date>'2015-11-10')  #TODO: dynamic
   second.join <- join(opp.clust.2015.new, daily.pred.data[[day]])
   colnames(second.join)[4] <- 'Name.Final'
   third.join <- join(second.join, pred.salary.vegas)
@@ -506,9 +483,3 @@ full.1day.stuff <- function(day=1, cut1.value=50000, cut2.value=50000)
   
   return(list(pred.today, lineups.today.final))
 }
-
-
-#TODO: run through all game days with parquet file, worth it to include GCP free?
-please.work1 <- full.1day.stuff(day=101)
-please.work2 <- full.1day.stuff(day=102)
-lineup_block <- list(please.work1[[2]], please.work2[[2]])
