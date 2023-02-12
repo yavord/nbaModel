@@ -51,6 +51,7 @@ TeamStats <- function(team){
   return(AllStats)
 }
 
+
 PlayerStats <- function(player, name){
   initial <- substr(player,1,1)
   url <- paste('http://www.basketball-reference.com/players/',initial,'/',player,'/gamelog/2016/')

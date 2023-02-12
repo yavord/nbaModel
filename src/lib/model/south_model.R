@@ -430,7 +430,7 @@ full.1day.stuff <- function(day=1, cut1.value=50000, cut2.value=50000)
   }
   opp.results.2015 <- opp.median.over.time(day.index=day)
   opp.clust.2015.new <- rbind.fill(opp.results.2015)
-  opp.clust.2015.new <- subset(opp.clust.2015.new, Date>'2015-11-10')  #TODO: dynamic
+  opp.clust.2015.new <- subset(opp.clust.2015.new, Date>'2015-11-10')  #TODO: dynamic date input
   second.join <- join(opp.clust.2015.new, daily.pred.data[[day]])
   colnames(second.join)[4] <- 'Name.Final'
   third.join <- join(second.join, pred.salary.vegas)

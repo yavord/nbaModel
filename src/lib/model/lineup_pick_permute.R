@@ -3,8 +3,10 @@ source(paste0(getwd(),'/src/lib/model/south_model.R'))
 ### Load df
 data_dir <- '/home/yavor/projects/multi_projects/nba/nbaModel/src/data/south_data/'
 
+# TODO: update script to generate daily.pred.data df
 daily.pred.data <- readRDS(paste0(data_dir,'daily_pred_data_final.rds'))
 
+# TODO: update script to generate/scrape these df's
 Teams.All <- read.csv(paste0(data_dir,'final_1516 player2.csv'))
 Defenses.All <- read.csv(paste0(data_dir,'final_1516_defense.csv'))
 All.Player.Previous <- read.csv(paste0(data_dir,'All_Player_Previous2.csv'))
@@ -18,13 +20,13 @@ All.Player.Previous$Date <- as.Date(All.Player.Previous$Date, "%m/%d/%Y")
 Salaries.All$Date <- as.Date(Salaries.All$Date, "%m/%d/%Y")
 Matchup.History$Date <- as.Date(Matchup.History$Date,"%m/%d/%Y")
 
-First.Date <- as.Date("11/16/2015","%m/%d/%Y")  #TODO: fix
+First.Date <- as.Date("11/16/2015","%m/%d/%Y")  # TODO: dynamic date input
 All.Dates <- unique(Teams.All$Date)
 All.Dates <- sort(All.Dates[All.Dates>=First.Date])
 
 
 ### Run full.1day.stuff over all possible game days
-days <- seq(1,141)  # TODO: automate over which days to run
+days <- seq(1,141)  # TODO: dynamic day index input
 lineup_block <- list()
 for (i in days) {
   message(i)
