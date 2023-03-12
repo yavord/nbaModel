@@ -23,12 +23,11 @@ def map_player_id_to_names() -> pd.DataFrame:
 
 
 def team_abrv_to_csv(team_abrv: dict):
-    team_abrv = pd.Series(team_abrv).to_csv('team_abbreviations.csv', header=False)  # TODO: create constant for filepath
+    team_abrv = pd.Series(team_abrv).to_csv('src/data/team_abbreviations.csv', header=False)
 
 
 def all_player_teams_to_csv(player_names: pd.DataFrame):
 
-    # TODO: create constant for season_id
     def get_current_team(player_id: str, season_id: str = '2022-23') -> pd.DataFrame:
         get_logs = PlayerCareerStats(player_id)
         logs: pd.DataFrame = get_logs.get_data_frames()[0]
@@ -47,7 +46,7 @@ def all_player_teams_to_csv(player_names: pd.DataFrame):
         all_players.append(player_logs)
         sleep(1)
     all_players_df: pd.DataFrame = pd.concat(all_players, axis=0).reset_index(drop=True)
-    all_players_df.to_csv('player_team.csv')  # TODO: create constant for output path
+    all_players_df.to_csv('src/data/player_team.csv')
 
 
 if __name__ == "__main__":

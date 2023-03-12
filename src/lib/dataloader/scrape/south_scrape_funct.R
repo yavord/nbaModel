@@ -51,6 +51,20 @@ TeamStats <- function(team, year){
   return(AllStats)
 }
 
+GetDefensesAll <- function(team_abrev, season) {
+  defenses_all_list <- vector("list", length = length(team_abrev))
+  
+  for (i in 1:length(team_abrev)) {
+    i_TeamStats <- TeamStats(team_abrev[i], SEASON)
+    defenses_all_list[[i]] <- i_TeamStats
+    Sys.sleep(30)
+  }
+  
+  Defenses.All <- do.call(rbind, defenses_all_list)
+  Defenses.All[,1] <- as.character(Defenses.All[,1])
+  return(Defenses.All)
+}
+
 
 PlayerStats <- function(player, name, year){
   initial <- substr(player,1,1)
