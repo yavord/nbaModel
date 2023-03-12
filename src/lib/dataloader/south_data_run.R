@@ -1,8 +1,8 @@
-# setwd('src/lib/dataloader/')
+setwd('src/lib/dataloader/')
 source('scrape/south_scrape_funct.R')
 
 ### TEAMSTATS
-ATL <- TeamStats('ATL')
+ATL <- TeamStats('ATL','2023')
 BOS <- TeamStats('BOS')
 BRK <- TeamStats('BRK')
 CHO <- TeamStats('CHO')
@@ -42,7 +42,7 @@ Defenses.All[,1] <- as.character(Defenses.All[,1])
 ###Atlanta Hawks###
 ###################
 
-Kent.Bazemore.All <- PlayerStats('bazemke01', 'KENT.BAZEMORE')
+Kent.Bazemore.All <- PlayerStats('bazemke01', 'KENT.BAZEMORE', '2016')
 Tim.Hardaway.All <- PlayerStats('hardati02', 'TIM.HARDAWAY')
 Justin.Holiday.All <- PlayerStats('holidju01', 'JUSTIN.HOLIDAY')
 Al.Horford.All <- PlayerStats('horfoal01', 'AL.HORFORD')

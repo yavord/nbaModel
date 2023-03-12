@@ -7,7 +7,7 @@ library(XML)
 library(stringr)
 library(plyr)
 library(arm);library(rbugs); library(R2WinBUGS)
-setwd("C:/Users/Charles/Documents/SMU/Research/Code/WinBUGS Models")
+# setwd("C:/Users/Charles/Documents/SMU/Research/Code/WinBUGS Models")
 
 ##################
 ###Team Read-In###

@@ -1,10 +1,10 @@
 library(XML)
 library(httr)
 
-TeamStats <- function(team){
-  url <- paste('http://www.basketball-reference.com/teams/',team,'/2016/gamelog/')
+TeamStats <- function(team, year){
+  url <- paste('http://www.basketball-reference.com/teams/',team,'/',year,'/gamelog/')
   url <- gsub(" ","",url,fixed=TRUE)
-  url2 <- paste('http://www.basketball-reference.com/teams/',team,'/2016/gamelog-advanced/')
+  url2 <- paste('http://www.basketball-reference.com/teams/',team,'/',year,'/gamelog-advanced/')
   url2 <- gsub(" ","",url2,fixed=TRUE)
   
   print(url)
@@ -52,12 +52,14 @@ TeamStats <- function(team){
 }
 
 
-PlayerStats <- function(player, name){
+PlayerStats <- function(player, name, year){
   initial <- substr(player,1,1)
-  url <- paste('http://www.basketball-reference.com/players/',initial,'/',player,'/gamelog/2016/')
+  url <- paste('http://www.basketball-reference.com/players/',initial,'/',player,'/gamelog/',year,'/')
   url <- gsub(" ","",url,fixed=TRUE)
-  url2 <- paste('http://www.basketball-reference.com/players/',initial,'/',player,'/gamelog-advanced/2016/')
+  url2 <- paste('http://www.basketball-reference.com/players/',initial,'/',player,'/gamelog-advanced/',year,'/')
   url2 <- gsub(" ","",url2,fixed=TRUE)
+  
+  print(url)
   
   url <- rawToChar(GET(url)$content)
   url2 <- rawToChar(GET(url2)$content)
